@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5 ITCamp - Advanced JavaScript Playground</title>
+    <style>
+        body {
+            font-family: 'Inter', 'Roboto', 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #ededed;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-top: 0;
+        }
+        
+        h1 {
+            color: #ff002a;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #131313;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #ededed;
+            border-radius: 8px;
+            background: #ededed;
+        }
+        
+        .section h2 {
+            color: #131313;
+            margin-top: 0;
+            border-bottom: 2px solid #ff002a;
+            padding-bottom: 10px;
+        }
+        
+        /* DOM Manipulation Section */
+        #domSection {
+            background: #ededed;
+        }
+        
+        .card {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border-left: 4px solid #ff002a;
+        }
+        
+        button {
+            background: #ff002a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #131313;
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+        
+        input {
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            margin: 5px;
+            font-size: 14px;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #ff002a;
+        }
+        
+        /* User Cards Section */
+        #userCardsSection {
+            background: #ededed;
+        }
+        
+        .user-card {
+            background: white;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
+            display: inline-block;
+            min-width: 200px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .user-card.active {
+            border-left: 4px solid #28a745;
+        }
+        
+        .user-card.offline {
+            border-left: 4px solid #dc3545;
+        }
+        
+        /* Array Methods Section */
+        #arraySection {
+            background: #ededed;
+        }
+        
+        .number-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .number-item {
+            background: #ff002a;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        
+        /* Storage Section */
+        #storageSection {
+            background: #ededed;
+        }
+        
+        .saved-item {
+            background: white;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .delete-btn {
+            background: #ff002a;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        
+        .highlight {
+            background: yellow;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        code {
+            background: #ededed;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #ff002a;
+        }
+        
+        .task-instruction {
+            background: #ededed;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 4px solid #ff002a;
+        }
+        
+        .task-instruction h3 {
+            margin-top: 0;
+            color: #131313;
+        }
+        
+        .header {
+            width: 100%;
+            padding: 20px;
+            background: #ededed;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            height: 60px;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="ITC LOGO FULL TRANSPARENT.png" alt="ITC Logo" class="logo">
+    </header>
+    <div class="container">
+        <h1>Advanced JavaScript Playground</h1>
+        <p class="subtitle">Experiment with code and see results instantly! Modify the commented lines in the JS files.</p>
+        
+        <!-- DOM Manipulation Section -->
+        <div class="section" id="domSection">
+            <h2>1. DOM Manipulation & Events</h2>
+            
+            <div class="task-instruction">
+                <h3>1.1: DOM Selectors</h3>
+                <p>Try different selectors! Open <code>script.js</code> and modify the commented lines to experiment with:</p>
+                <ul>
+                    <li><code>document.getElementById()</code></li>
+                    <li><code>document.querySelector()</code></li>
+                    <li><code>document.querySelectorAll()</code></li>
+                    <li><code>document.getElementsByClassName()</code></li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <p class="demo-class">Element with class "demo-class"</p>
+                <p class="demo-class">Another element with class "demo-class"</p>
+                <button id="querySelectorBtn">Use querySelector</button>
+                <button id="querySelectorAllBtn">Use querySelectorAll</button>
+                <button id="getElementsByClassNameBtn">Use getElementsByClassName</button>
+                <div id="selectorResults"></div>
+            </div>
+            
+            <div class="card">
+                <h3 id="changeableTitle">Click the button to change me!</h3>
+                <button id="changeTitleBtn">Change Title</button>
+                <input type="text" id="titleInput" placeholder="Enter new title...">
+            </div>
+            
+            <div class="task-instruction">
+                <h3>1.2: Event Listeners & Styles</h3>
+                <p>Modify <code>script.js</code> to change colors, add styles, or try different events. See the commented suggestions!</p>
+            </div>
+            
+            <div class="card" id="colorCard">
+                <p>This card changes color when you click the button!</p>
+                <button id="colorBtn">Change Color</button>
+            </div>
+            
+            <div class="task-instruction">
+                <h3>1.3: Dynamic Content</h3>
+                <p>Try <code>.innerHTML</code> vs <code>.textContent</code>! Modify the code to add styling or change the HTML structure.</p>
+            </div>
+            
+            <div class="card">
+                <ul id="dynamicList">
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                </ul>
+                <input type="text" id="listInput" placeholder="Add new item...">
+                <button id="addListItemBtn">Add to List</button>
+            </div>
+        </div>
+        
+        <!-- Nested Arrays & Loops Section -->
+        <div class="section" id="nestedSection" style="background: #ededed;">
+            <h2>2. Nested Arrays & Modern Loops</h2>
+            
+            <div class="task-instruction">
+                <h3>2. Nested Arrays & Modern Loops</h3>
+                <p>Open <code>nestedArrays.js</code> and experiment with:</p>
+                <ul>
+                    <li>Nested arrays (matrix) - Modify <code>findInGrid()</code></li>
+                    <li><code>for...of</code> - Try different operations in <code>sumArray()</code>, <code>findMax()</code></li>
+                    <li><code>for...in</code> - Experiment with <code>getObjectValues()</code></li>
+                    <li><code>forEach</code> - Change <code>doubleInPlace()</code> to triple or square</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <p><strong>Grid:</strong> <span id="gridDisplay">[[1, 2, 3], [4, 5, 6], [7, 8, 9]]</span></p>
+                <input type="number" id="gridSearchInput" placeholder="Find number in grid..." value="5">
+                <button id="gridSearchBtn">Find in Grid</button>
+                <div id="gridResults"></div>
+                
+                <hr style="margin: 15px 0;">
+                <p><strong>Array:</strong> <span id="arrayDisplay">[1, 2, 3, 4, 5]</span></p>
+                <button id="sumArrayBtn">Sum Array (for...of)</button>
+                <button id="findMaxBtn">Find Max (for...of)</button>
+                <div id="loopResults"></div>
+            </div>
+        </div>
+        
+        <!-- Modern Syntax Section -->
+        <div class="section" id="userCardsSection">
+            <h2>3. Modern Syntax: Arrow Functions & Template Literals</h2>
+            
+            <div class="task-instruction">
+                <h3>3. Modern Syntax</h3>
+                <p>Open <code>modernSyntax.js</code> and try:</p>
+                <ul>
+                    <li>Convert <code>getCard()</code> to a one-liner arrow function</li>
+                    <li>Experiment with template literals and ternary operators</li>
+                    <li>Try optional chaining with different object structures</li>
+                    <li>Modify short-circuiting functions (<code>showMessage</code>, <code>getUsername</code>)</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <input type="text" id="userNameInput" placeholder="Enter user name..." value="Winston">
+                <label>
+                    <input type="checkbox" id="isActiveCheck" checked> Active User
+                </label>
+                <button id="generateCardBtn">Generate User Card</button>
+                <div id="userCardsContainer"></div>
+            </div>
+            
+            <div class="task-instruction">
+                <h3>3.1: Short-Circuiting (&& and ||)</h3>
+                <p>Modify <code>showMessage()</code>, <code>getUsername()</code>, and <code>getDisplayName()</code> in <code>modernSyntax.js</code></p>
+            </div>
+            
+            <div class="card">
+                <input type="text" id="shortCircuitInput" placeholder="Enter message..." value="Hello!">
+                <label>
+                    <input type="checkbox" id="isVisibleCheck" checked> Is Visible
+                </label>
+                <button id="shortCircuitBtn">Test Short-Circuiting</button>
+                <div id="shortCircuitResults"></div>
+            </div>
+        </div>
+        
+        <!-- Array Methods Section -->
+        <div class="section" id="arraySection">
+            <h2>4. Array Methods: map(), filter(), find(), spread</h2>
+            
+            <div class="task-instruction">
+                <h3>4. Array Methods</h3>
+                <p>Open <code>arrayMethods.js</code> and experiment:</p>
+                <ul>
+                    <li><code>.map()</code> - Change <code>doubleNumbers()</code> to triple or square</li>
+                    <li><code>.filter()</code> - Modify conditions in <code>filterGreaterThan5()</code></li>
+                    <li><code>.find()</code> - Try different search conditions</li>
+                    <li>Spread operator - Combine arrays in different ways</li>
+                    <li>Rest operator - Try <code>sumAll()</code> with different operations</li>
+                    <li><code>.includes()</code> - Modify <code>hasAdminAccess()</code> logic</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <p><strong>Original Array:</strong> <span id="originalArray">[1, 2, 3, 4, 5]</span></p>
+                <button id="doubleBtn">Double Numbers (.map)</button>
+                <button id="filterBtn">Filter > 5 (.filter)</button>
+                <button id="findBtn">Find Number (.find)</button>
+                <button id="spreadBtn">Combine Arrays (spread)</button>
+                <div class="number-list" id="arrayResults"></div>
+                
+                <hr style="margin: 15px 0;">
+                <div class="task-instruction">
+                    <h3>4.1: Rest Operator & includes()</h3>
+                    <p>Try modifying <code>sumAll()</code> and <code>hasAdminAccess()</code> in <code>arrayMethods.js</code></p>
+                </div>
+                <input type="text" id="restInput" placeholder="Enter numbers separated by commas..." value="1,2,3,4,5">
+                <button id="restBtn">Sum All (rest operator)</button>
+                <input type="text" id="roleInput" placeholder="Enter role..." value="admin">
+                <button id="includesBtn">Check Admin Access (.includes)</button>
+                <div id="restResults"></div>
+            </div>
+        </div>
+        
+        <!-- Local Storage Section -->
+        <div class="section" id="storageSection">
+            <h2>5. Local Storage & Data Persistence</h2>
+            
+            <div class="task-instruction">
+                <h3>5. Local Storage</h3>
+                <p>Open <code>storage.js</code> and experiment with:</p>
+                <ul>
+                    <li>Change key names or add timestamps</li>
+                    <li>Modify display format in <code>loadItems()</code></li>
+                    <li>Try saving objects instead of strings</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <input type="text" id="saveInput" placeholder="Enter item to save...">
+                <button id="saveBtn">Save to Storage</button>
+                <button id="loadBtn">Load from Storage</button>
+                <button id="clearBtn">Clear Storage</button>
+                <div id="storageResults"></div>
+            </div>
+        </div>
+        
+        <!-- Modules Section -->
+        <div class="section" id="modulesSection" style="background: #ededed;">
+            <h2>6. Modules: Export & Import</h2>
+            
+            <div class="task-instruction">
+                <h3>6. Modules</h3>
+                <p>Open <code>modules.js</code> to see examples of:</p>
+                <ul>
+                    <li>Named exports - <code>export function calculateArea()</code></li>
+                    <li>Default export - <code>export default Rectangle</code></li>
+                    <li>Import syntax - See comments for examples</li>
+                </ul>
+                <p><strong>Note:</strong> To test modules with import/export, run a local server: <code>python3 -m http.server 8000</code></p>
+            </div>
+            
+            <div class="card">
+                <p>Modules allow you to organize code into separate files.</p>
+                <p><strong>Named Export:</strong> <code>export function name() { }</code></p>
+                <p><strong>Default Export:</strong> <code>export default ClassName</code></p>
+                <p><strong>Import:</strong> <code>import { name } from './file.js'</code></p>
+                <p><strong>Import Default:</strong> <code>import ClassName from './file.js'</code></p>
+                <p><strong>Import with Alias:</strong> <code>import { name as alias } from './file.js'</code></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <!-- Load dependency files first, then main script -->
+    <script src="nestedArrays.js"></script>
+    <script src="modernSyntax.js"></script>
+    <script src="arrayMethods.js"></script>
+    <script src="storage.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
