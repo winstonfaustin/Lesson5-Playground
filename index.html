@@ -105,6 +105,39 @@
             border-color: #ff002a;
         }
         
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: 1px solid #d0d0d0;
+            color: #131313;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+        
+        .menu-toggle:hover {
+            background: #d0d0d0;
+            border-color: #ff002a;
+        }
+        
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+        }
+        
+        .sidebar-overlay.active {
+            display: block;
+        }
+        
         /* Sidebar */
         .sidebar {
             position: fixed;
@@ -596,6 +629,10 @@
         
         /* Responsive */
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
             .sidebar {
                 transform: translateX(-100%);
             }
@@ -611,6 +648,10 @@
             .playground {
                 grid-template-columns: 1fr;
             }
+            
+            .top-header {
+                padding: 0 15px;
+            }
         }
     </style>
 </head>
@@ -618,6 +659,7 @@
     <!-- Top Header -->
     <header class="top-header">
         <nav class="header-nav">
+            <button class="menu-toggle" id="menuToggle">Menu</button>
             <a href="#" class="brand-logo">
                 <img src="ITC LOGO FULL TRANSPARENT.png" alt="ITC Logo" style="height: 40px; width: auto;">
             </a>
@@ -625,8 +667,11 @@
         <button class="theme-toggle" id="themeToggle">Theme</button>
     </header>
     
+    <!-- Sidebar Overlay (mobile only) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
     <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
         <div class="sidebar-item active" data-section="dom">DOM Basics</div>
         <div class="sidebar-item" data-section="nested">Nested Arrays</div>
         <div class="sidebar-item" data-section="syntax">Modern Syntax</div>
@@ -1061,6 +1106,29 @@ const rect = new MathUtils.default(5, 5);</code></pre>
     <!-- Scripts -->
     <script src="playground.js"></script>
     <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        
+        function toggleSidebar() {
+            sidebar.classList.toggle('open');
+            sidebarOverlay.classList.toggle('active');
+        }
+        
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+        }
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', toggleSidebar);
+        }
+        
+        if (sidebarOverlay) {
+            sidebarOverlay.addEventListener('click', closeSidebar);
+        }
+        
         // Sidebar Navigation
         const sidebarItems = document.querySelectorAll('.sidebar-item');
         const lessonSections = document.querySelectorAll('.lesson-section');
@@ -1078,6 +1146,11 @@ const rect = new MathUtils.default(5, 5);</code></pre>
                 const targetSection = document.getElementById(section + 'Section');
                 if (targetSection) {
                     targetSection.classList.add('active');
+                }
+                
+                // Close sidebar on mobile after selection
+                if (window.innerWidth <= 768) {
+                    closeSidebar();
                 }
             });
         });
